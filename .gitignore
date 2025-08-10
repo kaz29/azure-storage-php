@@ -12,3 +12,4 @@ output.txt
 /output/*
 /build/*
 /doc/*
+/.phpunit.result.cache

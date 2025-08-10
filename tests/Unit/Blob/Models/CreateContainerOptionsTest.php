@@ -72,7 +72,7 @@ class CreateContainerOptionsTest extends \PHPUnit\Framework\TestCase
         // Setup
         $properties = new CreateContainerOptions();
         $expected = new \DateTime();
-        $this->setExpectedException(get_class(new InvalidArgumentTypeException('')));
+        $this->expectException(InvalidArgumentTypeException::class);
 
         // Test
         $properties->setPublicAccess($expected);

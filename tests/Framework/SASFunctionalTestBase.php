@@ -69,7 +69,7 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
             );
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->createdContainer = array();
@@ -94,7 +94,7 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
             FileRestProxy::createFileService($connectionString);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->blobRestProxy  =
             BlobRestProxy::createBlobService($this->connectionString);
@@ -310,6 +310,6 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
         } catch (ServiceException $e) {
             $message = $e->getMessage();
         }
-        $this->assertContains($errorMsg, $message, $failureMessage);
+        $this->assertStringContainsString($errorMsg, $message, $failureMessage);
     }
 }

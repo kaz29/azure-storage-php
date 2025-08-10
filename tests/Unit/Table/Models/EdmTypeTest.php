@@ -134,7 +134,7 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
     public function testUnserializeQueryValueWithInvalid()
     {
         // Assert
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->expectException('\InvalidArgumentException');
 
         // Test
         EdmType::unserializeQueryValue('7amada', '1233');
@@ -257,7 +257,7 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
     public function testValidateEdmValueWithInvalid()
     {
         // Assert
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->expectException('\InvalidArgumentException');
 
         // Test
         EdmType::validateEdmValue('7amada', '1233');
@@ -350,7 +350,7 @@ class EdmTypeTest extends \PHPUnit\Framework\TestCase
     public function testSerializeValueWithInvalid()
     {
         // Assert
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->expectException('\InvalidArgumentException');
 
         // Test
         EdmType::serializeValue('7amada', '1233');
