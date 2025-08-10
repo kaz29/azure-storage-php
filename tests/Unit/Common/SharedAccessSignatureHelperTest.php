@@ -247,7 +247,7 @@ class SharedAccessSignatureHelperTest extends ReflectionTestBase
                 } catch (\InvalidArgumentException $e) {
                     $message = $e->getMessage();
                 }
-                $this->assertContains(
+                $this->assertStringContainsString(
                     $expectedErrorMessage,
                     $message
                 );

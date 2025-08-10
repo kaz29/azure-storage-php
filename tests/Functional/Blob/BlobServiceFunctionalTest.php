@@ -2643,7 +2643,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             $message = $e->getMessage();
         }
         $this->assertEquals(TestResources::STATUS_CONFLICT, $code);
-        $this->assertContains("The specified blob already exists", $message);
+        $this->assertStringContainsString("The specified blob already exists", $message);
         unlink($path);
     }
 
@@ -2878,8 +2878,8 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             } catch (ServiceException $e) {
                 $message = $e->getMessage();
             }
-            $this->assertContains('400', $message);
-            $this->assertContains(
+            $this->assertStringContainsString('400', $message);
+            $this->assertStringContainsString(
                 'The MD5 value specified in the request did not match with the MD5 value calculated by the server.',
                 $message
             );
@@ -3019,7 +3019,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
             if ($errorMsg == '') {
                 $this->assertEquals('', $message);
             } else {
-                $this->assertContains($errorMsg, $message);
+                $this->assertStringContainsString($errorMsg, $message);
             }
         }
     }
@@ -3037,7 +3037,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         } catch (ServiceException $e) {
             $message = $e->getMessage();
         }
-        $this->assertContains('There is currently a lease on the container and no lease ID was specified in the request', $message);
+        $this->assertStringContainsString('There is currently a lease on the container and no lease ID was specified in the request', $message);
         $options = new BlobServiceOptions();
         $options->setLeaseId($leaseId);
         $this->restProxy->deleteContainer($container, $options);
@@ -3058,7 +3058,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         } catch (ServiceException $e) {
             $message = $e->getMessage();
         }
-        $this->assertContains('There is currently a lease on the blob and no lease ID was specified in the request.', $message);
+        $this->assertStringContainsString('There is currently a lease on the blob and no lease ID was specified in the request.', $message);
         $options = new DeleteBlobOptions();
         $options->setLeaseId($leaseId);
         $this->restProxy->deleteBlob($container, $blob, $options);
@@ -3080,13 +3080,13 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         } catch (ServiceException $e) {
             $message = $e->getMessage();
         }
-        $this->assertContains(' The value for one of the HTTP headers is not in the correct format.', $message);
+        $this->assertStringContainsString(' The value for one of the HTTP headers is not in the correct format.', $message);
         try {
             $this->restProxy->acquireLease($container, $blob, $leaseId, 61);
         } catch (ServiceException $e) {
             $message = $e->getMessage();
         }
-        $this->assertContains(' The value for one of the HTTP headers is not in the correct format.', $message);
+        $this->assertStringContainsString(' The value for one of the HTTP headers is not in the correct format.', $message);
         $result = $this->restProxy->acquireLease($container, $blob, $leaseId, 15);
         $this->assertEquals($leaseId, $result->getLeaseId());
         //test lease duration expire
@@ -3121,7 +3121,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         } catch (ServiceException $e) {
             $message = $e->getMessage();
         }
-        $this->assertContains('There is currently a lease on the blob and no lease ID was specified in the request.', $message);
+        $this->assertStringContainsString('There is currently a lease on the blob and no lease ID was specified in the request.', $message);
 
         //test release lease
         $this->restProxy->releaseLease($container, $blob, $leaseId);
@@ -3133,7 +3133,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         } catch (ServiceException $e) {
             $message = $e->getMessage();
         }
-        $this->assertContains('There is currently a lease on the blob and no lease ID was specified in the request.', $message);
+        $this->assertStringContainsString('There is currently a lease on the blob and no lease ID was specified in the request.', $message);
 
         //test break lease
         $result = $this->restProxy->breakLease($container, $blob, 10);
@@ -3143,7 +3143,7 @@ class BlobServiceFunctionalTest extends FunctionalTestBase
         } catch (ServiceException $e) {
             $message = $e->getMessage();
         }
-        $this->assertContains('There is already a lease present.', $message);
+        $this->assertStringContainsString('There is already a lease present.', $message);
         \sleep(10);
         $this->restProxy->acquireLease($container, $blob, $leaseId);
         $options = new DeleteBlobOptions();

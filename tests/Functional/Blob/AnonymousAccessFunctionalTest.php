@@ -53,14 +53,14 @@ class AnonymousAccessFunctionalTest extends \PHPUnit\Framework\TestCase
         self::$accountName = self::$blobRestProxy->getAccountName();
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->containerName = TestResources::getInterestingName('con');
         self::$blobRestProxy->createContainer($this->containerName);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         self::$blobRestProxy->deleteContainer($this->containerName);
         parent::tearDown();

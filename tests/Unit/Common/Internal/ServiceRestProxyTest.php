@@ -207,7 +207,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
     {
         // Setup
         $metadata = array('key1' => "value1\n", 'MyName' => "\rAzurr", 'MyCompany' => "Micr\r\nosoft_");
-        $this->setExpectedException(get_class(new \InvalidArgumentException(Resources::INVALID_META_MSG)));
+        $this->expectException(get_class(new \InvalidArgumentException(Resources::INVALID_META_MSG)));
 
         // Test
         $proxy->generateMetadataHeaders($metadata);
@@ -219,7 +219,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
     public function testOnRejectedWithException($proxy)
     {
         // Setup
-        $this->setExpectedException(\Exception::class);
+        $this->expectException(\Exception::class);
         $onRejected = self::getMethod('onRejected', $proxy);
 
         // Test
@@ -233,7 +233,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
     {
         // Setup
         $message = 'test message';
-        $this->setExpectedException(\RuntimeException::class, $message);
+        $this->expectException(\RuntimeException::class, $message);
         $onRejected = self::getMethod('onRejected', $proxy);
 
         // Test
@@ -246,7 +246,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
     public function testOnRejectedWithRequestExceptionNullResponse($proxy)
     {
         // Setup
-        $this->setExpectedException(RequestException::class);
+        $this->expectException(RequestException::class);
         $onRejected = self::getMethod('onRejected', $proxy);
 
         $request = new Request('GET', 'http://www.bing.com');
@@ -262,7 +262,7 @@ class ServiceRestProxyTest extends ReflectionTestBase
     public function testOnRejectedWithRequestExceptionUnexpectedResponse($proxy)
     {
         // Setup
-        $this->setExpectedException(\MicrosoftAzure\Storage\Common\Exceptions\ServiceException::class);
+        $this->expectException(\MicrosoftAzure\Storage\Common\Exceptions\ServiceException::class);
         $onRejected = self::getMethod('onRejected', $proxy);
 
         $request = new Request('GET', 'http://www.bing.com');

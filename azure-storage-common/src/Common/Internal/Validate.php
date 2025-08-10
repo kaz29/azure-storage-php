@@ -68,9 +68,12 @@ class Validate
      */
     public static function canCastAsString($var, $name)
     {
+        if (is_object($var) && !method_exists($var, '__toString')) {
+            throw new InvalidArgumentTypeException(gettype(''), $name);
+        }
         try {
             (string)$var;
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             throw new InvalidArgumentTypeException(gettype(''), $name);
         }
     }
@@ -137,9 +140,7 @@ class Validate
      */
     public static function isInteger($var, $name)
     {
-        try {
-            (int)$var;
-        } catch (\Exception $e) {
+        if (!is_int($var) && !is_numeric($var)) {
             throw new InvalidArgumentTypeException(gettype(123), $name);
         }
     }

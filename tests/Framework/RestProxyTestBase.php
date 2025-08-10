@@ -61,11 +61,8 @@ class RestProxyTestBase extends \PHPUnit\Framework\TestCase
         $this->xmlSerializer = new XmlSerializer();
         Logger::setLogFile('C:\log.txt');
 
-        // Enable PHP asserts
-        assert_options(ASSERT_ACTIVE, 1);
-        assert_options(ASSERT_WARNING, 0);
-        assert_options(ASSERT_QUIET_EVAL, 1);
-        assert_options(ASSERT_CALLBACK, 'MicrosoftAzure\Storage\Tests\Framework\RestProxyTestBase::assertHandler');
+        // Note: assert_options() functions are deprecated in PHP 8.3+
+        // Modern PHP uses ini_set('assert.exception', 1) if needed
     }
 
     public function setProxy($serviceRestProxy)
@@ -73,7 +70,7 @@ class RestProxyTestBase extends \PHPUnit\Framework\TestCase
         $this->restProxy = $serviceRestProxy;
     }
 
-    protected function onNotSuccessfulTest(\Exception $e)
+    protected function onNotSuccessfulTest(\Throwable $e): never
     {
         parent::onNotSuccessfulTest($e);
 

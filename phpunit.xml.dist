@@ -2,10 +2,10 @@
 
 <phpunit bootstrap="vendor/autoload.php"
          backupGlobals="false"
-         backupStaticAttributes="false"
          beStrictAboutTestsThatDoNotTestAnything="true"
          beStrictAboutOutputDuringTests="true"
-         verbose="true">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd">
   <testsuites>
     <testsuite name="unit">
       <directory suffix="Test.php">tests/Unit</directory>
@@ -16,20 +16,21 @@
   </testsuites>
 
   <logging>
-    <log type="coverage-html" target="build/coverage" title="azure-storage-php"
-         charset="UTF-8" yui="true" highlight="true"
-         lowUpperBound="35" highLowerBound="70"/>
-    <log type="coverage-clover" target="build/logs/clover.xml"/>
-    <log type="junit" target="build/logs/junit.xml" logIncompleteSkipped="false"/>
+    <testdoxHtml outputFile="build/coverage/testdox.html"/>
+    <junit outputFile="build/logs/junit.xml"/>
   </logging>
 
-  <filter>
-    <whitelist addUncoveredFilesFromWhitelist="true">
+  <coverage>
+    <report>
+      <html outputDirectory="build/coverage" lowUpperBound="35" highLowerBound="70"/>
+      <clover outputFile="build/logs/clover.xml"/>
+    </report>
+    <include>
       <directory suffix=".php">azure-storage-blob/src</directory>
       <directory suffix=".php">azure-storage-table/src</directory>
       <directory suffix=".php">azure-storage-queue/src</directory>
       <directory suffix=".php">azure-storage-file/src</directory>
       <directory suffix=".php">azure-storage-common/src</directory>
-    </whitelist>
-  </filter>
+    </include>
+  </coverage>
 </phpunit>

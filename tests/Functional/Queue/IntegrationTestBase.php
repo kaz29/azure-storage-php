@@ -30,7 +30,7 @@ class IntegrationTestBase extends QueueServiceRestProxyTestBase
 {
     private static $isOneTimeSetup = false;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         if (!self::$isOneTimeSetup) {

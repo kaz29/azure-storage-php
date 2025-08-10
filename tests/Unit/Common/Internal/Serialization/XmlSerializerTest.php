@@ -128,7 +128,7 @@ class XmlSerializerTest extends \PHPUnit\Framework\TestCase
     public function testObjectSerializeInvalidObject()
     {
         // Setup
-        $this->setExpectedException(get_class(new \InvalidArgumentException()));
+        $this->expectException(get_class(new \InvalidArgumentException()));
         // Test
         $actual = XmlSerializer::objectSerialize(null, null);
         // Assert
