@@ -59,19 +59,15 @@ class SASFunctionalTestBase extends \PHPUnit\Framework\TestCase
     protected $queueRestProxy;
     protected $fileRestProxy;
 
-    public function __construct()
+    protected function setUp(): void
     {
+        parent::setUp();
         $this->xmlSerializer = new XmlSerializer();
         $this->connectionString = TestResources::getWindowsAzureStorageServicesConnectionString();
         $this->serviceSettings =
             StorageServiceSettings::createFromConnectionString(
                 $this->connectionString
             );
-    }
-
-    protected function setUp(): void
-    {
-        parent::setUp();
         $this->createdContainer = array();
         $this->createdTable     = array();
         $this->createdQueue     = array();

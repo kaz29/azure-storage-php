@@ -34,12 +34,10 @@ use GuzzleHttp\Psr7\Request;
 
 class RetryMiddlewareFactoryTest extends ReflectionTestBase
 {
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage should be positive number
-     */
     public function testCreateWithNegativeNumberOfRetries()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('should be positive number');
         $stack = RetryMiddlewareFactory::create(
             RetryMiddlewareFactory::GENERAL_RETRY_TYPE,
             -1,
@@ -48,12 +46,10 @@ class RetryMiddlewareFactoryTest extends ReflectionTestBase
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage should be positive number
-     */
     public function testCreateWithNegativeInterval()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('should be positive number');
         $stack = RetryMiddlewareFactory::create(
             RetryMiddlewareFactory::GENERAL_RETRY_TYPE,
             Resources::DEFAULT_NUMBER_OF_RETRIES,
@@ -62,12 +58,10 @@ class RetryMiddlewareFactoryTest extends ReflectionTestBase
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage is invalid
-     */
     public function testCreateWithInvalidType()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('is invalid');
         $stack = RetryMiddlewareFactory::create(
             'string that does not make sense',
             Resources::DEFAULT_NUMBER_OF_RETRIES,
@@ -76,12 +70,10 @@ class RetryMiddlewareFactoryTest extends ReflectionTestBase
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage is invalid
-     */
     public function testCreateWithInvalidAccumulationMethod()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('is invalid');
         $stack = RetryMiddlewareFactory::create(
             RetryMiddlewareFactory::GENERAL_RETRY_TYPE,
             Resources::DEFAULT_NUMBER_OF_RETRIES,

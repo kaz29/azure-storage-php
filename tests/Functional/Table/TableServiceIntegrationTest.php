@@ -99,7 +99,7 @@ class TableServiceIntegrationTest extends IntegrationTestBase
         $this->createTables(self::$testTablesPrefix, self::$testTables);
     }
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         if (self::$isOneTimeSetup) {
             $tmp = new TableServiceIntegrationTest();

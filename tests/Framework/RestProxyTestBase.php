@@ -56,8 +56,9 @@ class RestProxyTestBase extends \PHPUnit\Framework\TestCase
             Code '$code'\n";
     }
 
-    public function __construct()
+    protected function setUp(): void
     {
+        parent::setUp();
         $this->xmlSerializer = new XmlSerializer();
         Logger::setLogFile('C:\log.txt');
 

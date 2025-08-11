@@ -103,10 +103,6 @@ class ACLBaseTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage There can be at most 5 signed identifiers
-     */
     public function testAddRemoveSignedIdentifier()
     {
         $sample = TestResources::getQueueACLMultipleArraySample();
@@ -144,7 +140,10 @@ class ACLBaseTest extends \PHPUnit\Framework\TestCase
             $sample[0]['AccessPolicy']['Permission']
         );
         $this->assertCount(5, $acl->getSignedIdentifiers());
+        
         //add 6th signed identifier, expect error.
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('There can be at most 5 signed identifiers');
         $acl->addSignedIdentifier(
             $sample[5]['Id'],
             $sample[5]['AccessPolicy']['Start'],
