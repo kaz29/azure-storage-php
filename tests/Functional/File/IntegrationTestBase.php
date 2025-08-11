@@ -40,7 +40,7 @@ class IntegrationTestBase extends FileServiceRestProxyTestBase
         }
     }
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         if (self::$isOneTimeSetup) {
             $integrationTestBase = new IntegrationTestBase();

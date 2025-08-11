@@ -38,7 +38,7 @@ use MicrosoftAzure\Storage\Tests\Unit\Common\Models\AccessPolicyTest;
  * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
-class FileAccessPolicyTest extends AccessPolicyTest
+class FilePolicyTest extends AccessPolicyTest
 {
     protected function createAccessPolicy()
     {
