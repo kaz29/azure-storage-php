@@ -231,12 +231,10 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $this->assertEquals($container3, $containers[0]->getName());
     }
 
-    /**
-                    * @expectedException MicrosoftAzure\Storage\Common\Exceptions\ServiceException
-    * @expectedExceptionMessage 400
-    */
     public function testListContainersWithInvalidNextMarkerFail()
     {
+        $this->expectException(\MicrosoftAzure\Storage\Common\Exceptions\ServiceException::class);
+        $this->expectExceptionMessage('400');
         $this->skipIfEmulated();
 
         // Setup
@@ -333,12 +331,10 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $this->assertEquals($metadataValue, $metadata[$metadataName]);
     }
 
-    /**
-     * @expectedException MicrosoftAzure\Storage\Common\Exceptions\ServiceException
-     * @expectedExceptionMessage 400
-    */
     public function testCreateContainerInvalidNameFail()
     {
+        $this->expectException(\MicrosoftAzure\Storage\Common\Exceptions\ServiceException::class);
+        $this->expectExceptionMessage('400');
         // Setup
         $containerName = 'CreateContainerInvalidNameFail' . $this->createSuffix();
 
@@ -346,12 +342,10 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $this->createContainer($containerName);
     }
 
-    /**
-     * @expectedException MicrosoftAzure\Storage\Common\Exceptions\ServiceException
-     * @expectedExceptionMessage 409
-    */
     public function testCreateContainerAlreadyExitsFail()
     {
+        $this->expectException(\MicrosoftAzure\Storage\Common\Exceptions\ServiceException::class);
+        $this->expectExceptionMessage('409');
         // Setup
         $containerName = 'createcontaineralreadyexitsfail' . $this->createSuffix();
         $this->createContainer($containerName);
@@ -375,12 +369,10 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $this->assertTrue(empty($containers));
     }
 
-    /**
-            * @expectedException MicrosoftAzure\Storage\Common\Exceptions\ServiceException
-    * @expectedExceptionMessage 404
-    */
     public function testDeleteContainerFail()
     {
+        $this->expectException(\MicrosoftAzure\Storage\Common\Exceptions\ServiceException::class);
+        $this->expectExceptionMessage('404');
         // Setup
         $containerName = 'deletecontainerfail' . $this->createSuffix();
 
@@ -490,12 +482,10 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $this->assertEquals($expected, $result->getMetadata());
     }
 
-    /**
-                         * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage can't be NULL.
-     */
     public function testListBlobsNull()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("can't be NULL.");
         $this->restProxy->listBlobs(null);
     }
 
@@ -785,12 +775,10 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $this->assertTrue(is_bool($appendResult->getRequestServerEncrypted()));
     }
 
-    /**
-    * @expectedException MicrosoftAzure\Storage\Common\Exceptions\ServiceException
-    * @expectedExceptionMessage 412
-    */
     public function testAppendBlockConflictBecauseOfAppendPosition()
     {
+        $this->expectException(\MicrosoftAzure\Storage\Common\Exceptions\ServiceException::class);
+        $this->expectExceptionMessage('412');
         // Setup
         $name = 'appendblockappendpositionconflict' . $this->createSuffix();
         $this->createContainer($name);
@@ -818,12 +806,10 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $this->assertNotNull($appendResult->getETag());
     }
 
-    /**
-                     * @expectedException MicrosoftAzure\Storage\Common\Exceptions\ServiceException
-     * @expectedExceptionMessage 412
-    */
     public function testAppendBlockConflictBecauseOfMaxBlobSize()
     {
+        $this->expectException(\MicrosoftAzure\Storage\Common\Exceptions\ServiceException::class);
+        $this->expectExceptionMessage('412');
         // Setup
         $name = 'appendblockmaxblobsizeconflict' . $this->createSuffix();
         $this->createContainer($name);
@@ -1035,12 +1021,10 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         );
     }
 
-    /**
-          * @expectedException MicrosoftAzure\Storage\Common\Exceptions\ServiceException
-     * @expectedExceptionMessage 404
-     */
     public function testGetBlobNotExist()
     {
+        $this->expectException(\MicrosoftAzure\Storage\Common\Exceptions\ServiceException::class);
+        $this->expectExceptionMessage('404');
         $name = 'notexistcontainer' . $this->createSuffix();
         $blob = 'notexistblob';
 
@@ -1049,12 +1033,10 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         $promise->wait();
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage should be of type 'string'
-     */
     public function testCreateContainerAsyncWithInvalidParameters()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("should be of type 'string'");
         $this->restProxy->createContainerAsync(array());
     }
 
