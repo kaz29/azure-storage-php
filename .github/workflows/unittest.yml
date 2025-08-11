@@ -23,8 +23,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      with:
-        ref: feat/php-8.1-support
       
     - name: Setup PHP ${{ matrix.php-version }}
       uses: shivammathur/setup-php@v2
@@ -82,8 +80,6 @@ jobs:
     steps:
     - name: Checkout latest changes
       uses: actions/checkout@v4
-      with:
-        ref: feat/php-8.1-support
       
     - name: Setup PHP ${{ matrix.php-version }}
       uses: shivammathur/setup-php@v2
