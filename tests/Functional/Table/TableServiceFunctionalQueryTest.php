@@ -71,7 +71,7 @@ class TableServiceFunctionalQueryTest extends FunctionalTestBase
         }
     }
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         if (self::$isOneTimeSetup) {
             self::$isOneTimeSetup = false;
