@@ -13,3 +13,4 @@ output.txt
 /build/*
 /doc/*
 /.phpunit.result.cache
+/.envrc

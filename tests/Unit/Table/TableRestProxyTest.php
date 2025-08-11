@@ -855,11 +855,12 @@ class TableRestProxyTest extends TableServiceRestProxyTestBase
     }
 
     /**
-     * @expectedException MicrosoftAzure\Storage\Common\Exceptions\ServiceException
-     * @expectedExceptionMessage All commands in a batch must operate on same entity group.
      */
     public function testBatchWithDifferentPKFail()
     {
+        $this->expectException(\MicrosoftAzure\Storage\Common\Exceptions\ServiceException::class);
+        $this->expectExceptionMessage('All commands in a batch must operate on same entity group.');
+        
         // Setup
         $name = 'batchwithwithdifferentpkfail';
         $this->createTable($name);
