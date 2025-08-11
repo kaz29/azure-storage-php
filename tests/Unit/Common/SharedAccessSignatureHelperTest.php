@@ -86,12 +86,10 @@ class SharedAccessSignatureHelperTest extends ReflectionTestBase
         }
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage The string should only be a combination of
-     */
     public function testValidateAndSanitizeSignedServiceThrowsException()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The string should only be a combination of');
         // Setup
         $sasHelper = $this->testConstruct();
         $validateAndSanitizeSignedService = self::getMethod('validateAndSanitizeSignedService', $sasHelper);
@@ -131,12 +129,10 @@ class SharedAccessSignatureHelperTest extends ReflectionTestBase
         }
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage The string should only be a combination of
-     */
     public function testValidateAndSanitizeSignedResourceTypeThrowsException()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The string should only be a combination of');
         // Setup
         $sasHelper = $this->testConstruct();
         $validateAndSanitizeSignedResourceType = self::getMethod('validateAndSanitizeSignedResourceType', $sasHelper);
@@ -170,12 +166,10 @@ class SharedAccessSignatureHelperTest extends ReflectionTestBase
         }
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage is invalid
-     */
     public function testValidateAndSanitizeSignedProtocolThrowsException()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('is invalid');
         // Setup
         $sasHelper = $this->testConstruct();
         $validateAndSanitizeSignedProtocol = self::getMethod('validateAndSanitizeSignedProtocol', $sasHelper);

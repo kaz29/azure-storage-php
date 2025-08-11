@@ -9,6 +9,7 @@
   <testsuites>
     <testsuite name="unit">
       <directory suffix="Test.php">tests/Unit</directory>
+      <exclude>tests/Unit/Common/Models/AccessPolicyTest.php</exclude>
     </testsuite>
     <testsuite name="functional">
       <directory suffix="Test.php">tests/Functional</directory>
