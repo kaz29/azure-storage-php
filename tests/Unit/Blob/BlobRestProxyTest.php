@@ -1037,7 +1037,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage("should be of type 'string'");
-        $this->restProxy->createContainerAsync(array());
+        $this->restProxy->createContainerAsync(new \stdClass());
     }
 
     public function testGetBlobWithRange()
@@ -2120,7 +2120,7 @@ class BlobRestProxyTest extends BlobServiceRestProxyTestBase
         //get the path for the file to be downloaded into.
         $uuid = uniqid('test-file-', true);
         $downloadPath = '\0/0@$%@!Zasdf:\\\\\\\\Invalid.PATH'.$uuid.'.txt';
-        error_reporting(E_ALL ^ E_WARNING);
+        error_reporting(0); // E_ALL ^ E_WARNINGだとワーニングが消えないので0に変更
         try {
             $result = $this->restProxy->saveBlobToFile($downloadPath, $name, $blob);
         } catch (\Exception $e) {

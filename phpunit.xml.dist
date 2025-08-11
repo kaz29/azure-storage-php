@@ -21,7 +21,7 @@
     <junit outputFile="build/logs/junit.xml"/>
   </logging>
 
-  <coverage>
+  <!-- <coverage>
     <report>
       <html outputDirectory="build/coverage" lowUpperBound="35" highLowerBound="70"/>
       <clover outputFile="build/logs/clover.xml"/>
@@ -33,5 +33,5 @@
       <directory suffix=".php">azure-storage-file/src</directory>
       <directory suffix=".php">azure-storage-common/src</directory>
     </include>
-  </coverage>
+  </coverage> -->
 </phpunit>
